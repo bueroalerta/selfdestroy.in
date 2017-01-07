@@ -1,0 +1,23 @@
+{
+  "name": "selfdestroy.in",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Xavian Ang <xavianang@openmindsresources.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.6.1",
+    "angular-touch": "^1.6.1",
+    "bootstrap": "^3.3.7"
+  }
+}
