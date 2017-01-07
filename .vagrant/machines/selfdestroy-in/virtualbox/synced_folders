@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/selfdestroy-in":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/selfdestroy-in","hostpath":"/Applications/MAMP/htdocs/selfdestroy.in","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Applications/MAMP/htdocs/selfdestroy.in","disabled":false,"__vagrantfile":true}}}
