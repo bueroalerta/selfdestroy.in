@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Message extends Model
 {
+  protected $hidden = array('password');
+
   public static function generateCode( $length = 10 ){
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

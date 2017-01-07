@@ -17,4 +17,6 @@ use Illuminate\Http\Request;
     return $request->user();
 })->middleware('auth:api');*/
 
-Route::post('/create', 'MessageController@create');
+Route::post('/message/create', 'MessageController@create');
+Route::get('/message/view/{code}', 'MessageController@view');
+Route::post('/message/authenticate/{code}', 'MessageController@authenticate');
