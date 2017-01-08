@@ -19,4 +19,5 @@ use Illuminate\Http\Request;
 
 Route::post('/message/create', 'MessageController@create');
 Route::get('/message/view/{code}', 'MessageController@view');
+Route::get('/message/fetch/{code}', 'MessageController@fetch');
 Route::post('/message/authenticate/{code}', 'MessageController@authenticate');

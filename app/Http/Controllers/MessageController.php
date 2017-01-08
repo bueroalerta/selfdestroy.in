@@ -19,11 +19,14 @@ class MessageController extends Controller
       'title' => 'max:100',
       'content' => 'required',
       'password' => 'min:8',
+      'confirm_password' => 'required_with:password|same:password',
       'expiry' => 'date_format:Y-m-d H:i'
     ], [
       'title.max' => 'Title cannot be more than 100 characters',
       'content.required' => 'Content of message cannot be empty',
       'password.min' => 'Password must have at least 8 characters',
+      'confirm_password.required_with' => 'Re-enter your password',
+      'confirm_password.same' => 'Passwords do not match',
       'expiry.date_format' => 'Invalid format for expiration date'
     ]);
 
@@ -60,7 +63,7 @@ class MessageController extends Controller
 
     return response()->json([
       'status' => 1,
-      'code' => url('m/'.$msg->code),
+      'code' => url('').'/#/m/'.$msg->code,
       'message' => 'This message will expire at '.$msg->expires_at
     ], 200);
   }
@@ -87,15 +90,38 @@ class MessageController extends Controller
     }
   }
 
+  public function fetch($code){
+    $payload = Message::where('code', $code)
+      ->where('expires_at', '>', Carbon::now()->toDateTimeString())->first(['content', 'password']);
+
+    if( $payload ) {
+      if( $payload->password ){
+        return response()->json([
+          'status' => 0,
+          'message' => 'You do not have permission to view this message'
+        ], 200);
+      }
+      else {
+        return response()->json([
+          'status' => 1,
+          'content' => $payload->content
+        ], 200);
+      }
+    }
+    else {
+      return response()->json([
+        'status' => 0,
+        'message' => 'This message does not exists or has expired already'
+      ], 200);
+    }
+  }
+
   public function authenticate(Request $request, $code){
     // Validations
     $validator = Validator::make($request->all(), [
-      'password' => 'required',
-      'confirm_password' => 'required_with:password|same:password'
+      'password' => 'required'
     ], [
-      'password.required' => 'Password was not entered',
-      'confirm_password.required_with' => 'Re-enter your password',
-      'confirm_password.same' => 'Passwords do not match'
+      'password.required' => 'Password was not entered'
     ]);
 
     if( $validator->fails() ){

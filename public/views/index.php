@@ -24,6 +24,11 @@
   <script type="text/javascript" src="bower_resources/pickadate/lib/picker.time.js"></script>
   <script type="text/javascript" src="bower_resources/ng-pickadate/ng-pickadate.js"></script>
   <script type="text/javascript" src="bower_resources/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="bower_resources/angular-timer/dist/angular-timer.min.js"></script>
+  <script type="text/javascript" src="bower_resources/humanize-duration/humanize-duration.js"></script>
+  <script type="text/javascript" src="bower_resources/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="bower_resources/angular-moment/angular-moment.min.js"></script>
+  <script type="text/javascript" src="bower_resources/moment-timezone/moment-timezone.js"></script>
   <!-- Angular Implementation -->
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/routes.js"></script>

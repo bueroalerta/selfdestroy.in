@@ -14,3 +14,7 @@
 Route::get('/', function(){
   return View::make('index'); // public/views/index.php
 });
+
+Route::get('/m/{code}', function($code){
+  return View::make('message')->with('code', $code);
+});

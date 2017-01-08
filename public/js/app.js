@@ -4,7 +4,9 @@
   angular.module('selfdestroyin', [
     'ui.bootstrap',
     'pickadate',
-    'ui.router'
+    'ui.router',
+    'timer',
+    'angularMoment'
   ])
 
     .constant('API', 'http://selfdestroy.in/')
