@@ -3,7 +3,8 @@
 
   angular.module('selfdestroyin', [
     'ui.bootstrap',
-    'pickadate'
+    'pickadate',
+    'ui.router'
   ])
 
     .constant('API', 'http://selfdestroy.in/')
