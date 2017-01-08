@@ -2,7 +2,8 @@
   'use strict';
 
   angular.module('selfdestroyin', [
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'pickadate'
   ]);
 
 })();

@@ -18,6 +18,7 @@
   "dependencies": {
     "angular-animate": "^1.6.1",
     "angular-touch": "^1.6.1",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "ng-pickadate": "^0.3.1"
   }
 }
