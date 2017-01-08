@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Message extends Model
 {
-  protected $hidden = array('password');
+  protected $hidden = ['password'];
+  protected $dates = ['created_at', 'updated_at', 'expires_at'];
 
   public static function generateCode( $length = 10 ){
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

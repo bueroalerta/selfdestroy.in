@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,15 +66,25 @@ class MessageController extends Controller
   }
 
   public function view($code){
-    $payload = Message::where('code', $code)->first();
+    $payload = Message::where('code', $code)
+      ->where('expires_at', '>', Carbon::now()->toDateTimeString())->get();
 
-    $payload->encrypted = ($payload->password) ? true : false;
-    unset($payload->content);
+    if( $payload->count() ) {
+      $payload = $payload->first();
+      $payload->encrypted = ($payload->password) ? true : false;
+      unset($payload->content);
 
-    return response()->json([
-      'status' => 1,
-      'payload' => $payload
-    ]);
+      return response()->json([
+        'status' => 1,
+        'payload' => $payload
+      ], 200);
+    }
+    else {
+      return response()->json([
+        'status' => 0,
+        'message' => 'This message does not exists or has expired already'
+      ], 200);
+    }
   }
 
   public function authenticate(Request $request, $code){
@@ -93,18 +105,27 @@ class MessageController extends Controller
       ], 400);
     }
 
-    $payload = Message::where('code', $code)->first(['content', 'password']);
+    $payload = Message::where('code', $code)
+      ->where('expires_at', '>', Carbon::now()->toDateTimeString())->first(['content', 'password']);
 
-    if( Hash::check($request->input('password'), $payload->password) ){
-      return response()->json([
-        'status' => 1,
-        'content' => $payload->content
-      ], 200);
+    if( $payload ) {
+
+      if (Hash::check($request->input('password'), $payload->password)) {
+        return response()->json([
+          'status' => 1,
+          'content' => $payload->content
+        ], 200);
+      } else {
+        return response()->json([
+          'status' => 0,
+          'message' => 'Password incorrect'
+        ], 200);
+      }
     }
     else {
       return response()->json([
         'status' => 0,
-        'message' => 'Password incorrect'
+        'message' => 'This message does not exists or has expired already'
       ], 200);
     }
   }
