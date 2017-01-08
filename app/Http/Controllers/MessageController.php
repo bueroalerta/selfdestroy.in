@@ -43,7 +43,7 @@ class MessageController extends Controller
       }
       $msg->title = $request->input('title');
       $msg->content = $request->input('content');
-      $msg->expires_at = $request->input('expiry');
+      $msg->expires_at = Carbon::parse($request->input('expiry'));
 
       if( $request->input('password') ){
         $msg->password = Hash::make($request->input('password'));
@@ -54,7 +54,7 @@ class MessageController extends Controller
     catch(QueryException $e){
       return response()->json([
         'status' => 0,
-        'message' => 'An unexpected error occurred'
+        'message' => 'An unexpected error occurred 1'
       ], 500);
     }
 
