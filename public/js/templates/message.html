@@ -1,0 +1,40 @@
+<div class="fs">
+  <div id="left">
+    <form name="authenticate" novalidate ng-submit="message.authenticate(authenticate)">
+      <a ui-sref="home" class="btn btn-primary btn-lg">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp; Back to Home
+      </a>
+      <section>
+        <h4>This message is made to</h4>
+        <h1>selfdestroy.in</h1>
+        <h5>
+          <timer end-time="message.payload.expires_at_moment" finish-callback="message.expired()">{{days}} days, {{hours}} hours, {{minutes}} minutes,
+          {{seconds}} seconds.</timer>
+        </h5>
+      </section>
+      <section ng-if="message.payload.encrypted && !message.content" class="form-group"
+                ng-class="{'has-error': authenticate.password.$error.required && authenticate.$submitted}">
+        <span class="instruction">This message is password protected, enter the password you have received to
+          access this message</span>
+        <input type="password" name="password" class="form-control" placeholder="Enter your password"
+               ng-model="message.form.password" required/>
+      </section>
+      <section ng-hide="message.content">
+        <button type="submit" class="btn btn-primary btn-lg" ng-disabled="!authenticate.$valid">
+          <span class="glyphicon glyphicon-inbox"></span>&nbsp; View Message
+        </button>
+      </section>
+      <section ng-if="message.content">
+        <span class="instruction">Your Message</span>
+        <div class="message">
+          {{ message.content }}
+        </div>
+      </section>
+    </form>
+  </div>
+  <div id="right">
+    <div class="wrapper">
+      <h2 class="centered">I'm still thinking what to put here</h2>
+    </div>
+  </div>
+</div>
