@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+html, body { height:100%; }
+
+h1,h2,h3,h4,h5,h6,p,span {
+  font-family:'Montserrat', sans-serif;
+  margin:0;
+  color:#fff;
+}
+
+/* Overwrites Bootstrap */
+.form-control.form-control-half {
+  float:left; width:49%
+}
+.form-control.form-control-half.first-half { margin-right:2%; }
+
+.btn { border-radius:2px; outline:none !important; box-shadow:none; }
+.btn-lg { font-size:14px; }
+.btn-primary, .btn-primary.disabled.focus, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled].focus, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
+  background-color:#00736F;
+  border-color:#00736F;
+  color:#fff;
+}
+.btn-primary:focus {
+  background-color:#00736F !important;
+  border-color:#00736F !important;
+  color:#fff !important;
+}
+.btn-primary:hover {
+  background-color:#006763;
+  border-color:#006763;
+}
+
+.fs {
+  width: 100%;
+  height: 100%
+}
+
+#left {
+  position:fixed;
+  top:0; left:0; bottom:0;
+  width:365px; max-width:100%;
+  background-color:#333;
+  padding:35px;
+  overflow:auto;
+  z-index:10;
+}
+
+#left section { margin-top:20px; margin-bottom:0; }
+#left .instruction { display:block; margin-bottom:7px; }
+
+#right {
+  width:100%; height:100%;
+  padding-left:365px;
+  background-color:#00736F;
+}
+
+#right .wrapper { position:relative; height:100%; }
+#right .centered {
+  position:absolute;
+  top:50%; left:50%;
+  width:500px; max-width:100%;
+  padding:30px;
+  transform:translate(-50%,-50%);
+  *-webkit-transform:translate(-50%,-50%);
+  *-moz-transform:translate(-50%,-50%);
+  *-o-transform:translate(-50%,-50%);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #left { position:relative; width:100%; }
+  #right { height:auto; padding:0; }
+  #right .centered { position:relative; width:100%; top:auto; left:auto; transform:none; }
+}
